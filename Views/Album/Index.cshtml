@@ -1,0 +1,61 @@
+@model IEnumerable<moment3.Models.Album>
+
+@{
+    ViewData["Title"] = "My albums";
+}
+
+<h1>Albums</h1>
+
+<p>
+    <a asp-action="Create">Add new album</a>
+</p>
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfSongs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="Artist" asp-action="Details" asp-route-id="@item.ArtistId">
+                @Html.DisplayFor(modelItem => item.Artist.FullName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountOfSongs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AlbumId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AlbumId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
